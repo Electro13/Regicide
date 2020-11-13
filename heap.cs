@@ -49,35 +49,43 @@ public class heap<T> where T : IHeapItem<T>
         return Equals(items[item.HeapIndex], item);
     }
 
-    void SortDown(T item) {
-		while (true) {
-			int childIndexLeft = item.HeapIndex * 2 + 1;
-			int childIndexRight = item.HeapIndex * 2 + 2;
-			int swapIndex = 0;
+    void SortDown(T item)
+    {
+        while (true)
+        {
+            int childIndexLeft = item.HeapIndex * 2 + 1;
+            int childIndexRight = item.HeapIndex * 2 + 2;
+            int swapIndex = 0;
 
-			if (childIndexLeft < currentItemCount) {
-				swapIndex = childIndexLeft;
+            if (childIndexLeft < currentItemCount)
+            {
+                swapIndex = childIndexLeft;
 
-				if (childIndexRight < currentItemCount) {
-					if (items[childIndexLeft].CompareTo(items[childIndexRight]) < 0) {
-						swapIndex = childIndexRight;
-					}
-				}
+                if (childIndexRight < currentItemCount)
+                {
+                    if (items[childIndexLeft].CompareTo(items[childIndexRight]) < 0)
+                    {
+                        swapIndex = childIndexRight;
+                    }
+                }
 
-				if (item.CompareTo(items[swapIndex]) < 0) {
-					Swap (item,items[swapIndex]);
-				}
-				else {
-					return;
-				}
+                if (item.CompareTo(items[swapIndex]) < 0)
+                {
+                    Swap(item, items[swapIndex]);
+                }
+                else
+                {
+                    return;
+                }
 
-			}
-			else {
-				return;
-			}
+            }
+            else
+            {
+                return;
+            }
 
-		}
-	}
+        }
+    }
 
     void SortUp(T item)
     {
@@ -86,7 +94,7 @@ public class heap<T> where T : IHeapItem<T>
         while (true)
         {
             T parentItem = items[parentIndex];
-            if(item.CompareTo(parentItem) > 0)
+            if (item.CompareTo(parentItem) > 0)
             {
                 Swap(item, parentItem);
             }
@@ -107,7 +115,7 @@ public class heap<T> where T : IHeapItem<T>
     }
 }
 
-public interface IHeapItem<T> : IComparable<T> 
+public interface IHeapItem<T> : IComparable<T>
 {
     int HeapIndex
     {
